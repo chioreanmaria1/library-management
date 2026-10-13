@@ -26,4 +26,9 @@ public class Book {
     public Integer getNrPages() {
         return nrPages;
     }
+
+    @Override
+    public String toString() {
+        return title;
+    }
 }

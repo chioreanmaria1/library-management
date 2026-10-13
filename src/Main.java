@@ -15,9 +15,17 @@ public class Main {
         Library library = new Library(books);
 //        library.printAllBooks();
 
-        System.out.println("Author: ");
-        String author = scanner.nextLine();
-        library.getBooksByAuthor(author);
-    }
+//        System.out.println("Author: ");
+//        String author = scanner.nextLine();
+//        library.getBooksByAuthor(author);
 
+        String[] BOOKS_TITLES = {
+                "Clean Code",
+                "1984",
+                "Animal Farm",
+                "Harry Potter"
+        };
+
+        System.out.print(library.getBooksByTitle(BOOKS_TITLES));
+    }
 }

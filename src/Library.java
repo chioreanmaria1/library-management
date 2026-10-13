@@ -45,6 +45,17 @@ public class Library {
             }
         }
     }
+    public ArrayList<Book> getBooksByTitle(String[] bookTitles){
+        ArrayList<Book> booksByTitle = new ArrayList<>();
+        for (Book book: this.books){
+            for (String title: bookTitles){
+                if (title.equals(book.title)){
+                    booksByTitle.add(book);
+                }
+            }
+        }
+        return booksByTitle;
+    }
 
 
 }
