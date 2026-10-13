@@ -79,15 +79,21 @@ public class Library {
         }
         Book maxBook = new Book();
         int maxPrice = 0;
-        for (Book book: this.books){
-            for (Book b: bookList){
-                if (book.price > maxPrice){
-                    maxPrice = book.price;
-                    maxBook = book;
-                }
+        for (Book b: bookList){
+            if (b.price > maxPrice){
+                maxPrice = b.price;
+                maxBook = b;
             }
         }
         return maxBook.getTitle();
+    }
+
+    public void getBooksWithMinimumNumberOfPages(ArrayList<Book> books, int minimumPageNumber){
+        for (Book book: books){
+            if (book.nrPages >= minimumPageNumber){
+                System.out.println(book.getTitle());
+            }
+        }
     }
 
 }

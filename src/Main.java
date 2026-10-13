@@ -31,6 +31,7 @@ public class Main {
 //        System.out.printf("%.2f\n",library.getAveragePageNumber(library.getBooksByTitle(BOOKS_TITLES)));
 //        library.filterBooksByPrice(library.getBooksByTitle(BOOKS_TITLES),30);
 
-        System.out.print(library.getMostExpensiveBook(library.getBooksByTitle(BOOKS_TITLES)));
+//        System.out.print(library.getMostExpensiveBook(library.getBooksByTitle(BOOKS_TITLES)));
+        library.getBooksWithMinimumNumberOfPages(library.getBooksByTitle(BOOKS_TITLES),300);
     }
 }
