@@ -26,6 +26,6 @@ public class Main {
                 "Harry Potter"
         };
 
-        System.out.print(library.getBooksByTitle(BOOKS_TITLES));
+        System.out.printf("%.2f\n",library.getAveragePageNumber(library.getBooksByTitle(BOOKS_TITLES)));
     }
 }

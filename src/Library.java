@@ -57,5 +57,12 @@ public class Library {
         return booksByTitle;
     }
 
+    public double getAveragePageNumber(ArrayList<Book> books){
+        double sum = 0;
+        for (Book book: books){
+            sum += book.nrPages;
+        }
+        return sum/books.size();
+    }
 
 }
