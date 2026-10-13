@@ -23,10 +23,14 @@ public class Main {
                 "Clean Code",
                 "1984",
                 "Animal Farm",
-                "Harry Potter"
+                "Harry Potter",
+                "The Hobbit",
+
         };
 
 //        System.out.printf("%.2f\n",library.getAveragePageNumber(library.getBooksByTitle(BOOKS_TITLES)));
-        library.filterBooksByPrice(library.getBooksByTitle(BOOKS_TITLES),30);
+//        library.filterBooksByPrice(library.getBooksByTitle(BOOKS_TITLES),30);
+
+        System.out.print(library.getMostExpensiveBook(library.getBooksByTitle(BOOKS_TITLES)));
     }
 }

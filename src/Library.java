@@ -72,4 +72,22 @@ public class Library {
             }
         }
     }
+
+    public String getMostExpensiveBook(ArrayList<Book> bookList){
+        if (books.isEmpty()){
+            return null;
+        }
+        Book maxBook = new Book();
+        int maxPrice = 0;
+        for (Book book: this.books){
+            for (Book b: bookList){
+                if (book.price > maxPrice){
+                    maxPrice = book.price;
+                    maxBook = book;
+                }
+            }
+        }
+        return maxBook.getTitle();
+    }
+
 }

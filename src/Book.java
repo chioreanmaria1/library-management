@@ -10,6 +10,7 @@ public class Book {
         this.price = price;
         this.nrPages = nrPages;
     }
+    Book(){};
 
     public String getTitle() {
         return title;
