@@ -65,4 +65,11 @@ public class Library {
         return sum/books.size();
     }
 
+    public void filterBooksByPrice(ArrayList<Book> books, double maxPrice){
+        for (Book book: this.books){
+            if (book.price <= maxPrice){
+               System.out.println(book.getTitle());
+            }
+        }
+    }
 }
