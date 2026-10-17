@@ -5,11 +5,18 @@ import java.util.List;
 import static java.lang.Integer.sum;
 
 public class Library {
-    ArrayList<Book> books;
+    private ArrayList<Book> books;
     Library(ArrayList<Book> books){
         this.books = books;
     }
 
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
 
     public void addBook(Book book){
         books.add(book);
@@ -18,6 +25,12 @@ public class Library {
     //prints the title only
     public void printAllBooks(){
         for (Book book: this.books){
+            System.out.println(book.getTitle());
+        }
+    }
+
+    public void printBooksFromAList(ArrayList<Book> bookList){
+        for (Book book: bookList){
             System.out.println(book.getTitle());
         }
     }
@@ -40,14 +53,14 @@ public class Library {
     public void removeBook(Book book){
         books.remove(book);
     }
-    public void getBooksByAuthor(String author) {
-        for (Book book: books){
-            if (author.equals(book.getAuthor())){
-                System.out.println(book.getTitle());
-            }
-        }
-    }
-    public ArrayList<Book> getBooksByTitle(String[] bookTitles){
+//    public Book getBooksByAuthor(String author) {
+//        for (Book book: books){
+//            if (author.equals(book.getAuthor())){
+//                System.out.println(book.getTitle());
+//            }
+//        }
+//    }
+    public ArrayList<Book> getBooksByTitle(ArrayList<String> bookTitles){
         ArrayList<Book> booksByTitle = new ArrayList<>();
         for (Book book: this.books){
             for (String title: bookTitles){
@@ -75,7 +88,7 @@ public class Library {
         }
     }
 
-    public String getMostExpensiveBook(ArrayList<Book> bookList){
+    public Book getMostExpensiveBook(ArrayList<Book> bookList){
         if (books.isEmpty()){
             return null;
         }
@@ -87,17 +100,18 @@ public class Library {
                 maxBook = b;
             }
         }
-        return maxBook.getTitle();
+        return maxBook;
     }
 
-    public void getBooksWithMinimumNumberOfPages(int minimumPageNumber){
+    public ArrayList<Book> getBooksWithMinimumNumberOfPages(int minimumPageNumber){
+        ArrayList<Book> booksMinimum = new ArrayList<>();
         for (Book book: books){
             if (book.getNrPages() >= minimumPageNumber){
-                System.out.println(book.getTitle());
+                booksMinimum.add(book);
             }
         }
+        return booksMinimum;
     }
-
 
     public ArrayList<BookPair> getTwoBooksWithingTheBudget(int budget){
         ArrayList<BookPair> booksWithinBudget = new ArrayList<>();
@@ -135,7 +149,5 @@ public class Library {
             }
         }
         return booksWithinBudget;
-
     }
-
 }
