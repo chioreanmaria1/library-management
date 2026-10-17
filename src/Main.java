@@ -12,6 +12,7 @@ public class Main {
         books.add(new Book("Animal Farm", "George Orwell", 12, 112));
         books.add(new Book("Java Basics", "Max Müller", 35, 520));
         books.add( new Book("The Hobbit", "J. R. R. Tolkien", 28, 310));
+        books.add(new Book("Harry Potter and the Chamber of Secrets", "J.K Rowling", 35, 523));
         Library library = new Library(books);
 //        library.printAllBooks();
 
@@ -29,9 +30,13 @@ public class Main {
         };
 
 //        System.out.printf("%.2f\n",library.getAveragePageNumber(library.getBooksByTitle(BOOKS_TITLES)));
-//        library.filterBooksByPrice(library.getBooksByTitle(BOOKS_TITLES),30);
-
+//           library.filterBooksByPrice(30);
+//
 //        System.out.print(library.getMostExpensiveBook(library.getBooksByTitle(BOOKS_TITLES)));
-        library.getBooksWithMinimumNumberOfPages(library.getBooksByTitle(BOOKS_TITLES),300);
+//        library.getBooksWithMinimumNumberOfPages(300);
+        System.out.println("Budget: ");
+        int budget = scanner.nextInt();
+        System.out.println(library.getTwoBooksWithingTheBudget(budget));
+
     }
 }

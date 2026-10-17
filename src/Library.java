@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.lang.Integer.sum;
+
 public class Library {
     ArrayList<Book> books;
     Library(ArrayList<Book> books){
@@ -22,16 +24,16 @@ public class Library {
 
     public void updateBook(Book book, String newTitle, String newAuthor, Integer newPrice, Integer newNrPages){
         if (newTitle != null){
-            book.title = newTitle;
+            book.setTitle(newTitle);
         }
         if(newAuthor != null){
-            book.author = newAuthor;
+            book.setAuthor(newAuthor);
         }
         if (newNrPages != null){
-            book.nrPages = newNrPages;
+            book.setNrPages(newNrPages);
         }
         if (newPrice != null){
-            book.price = newPrice;
+            book.setPrice(newPrice);
         }
     }
 
@@ -40,7 +42,7 @@ public class Library {
     }
     public void getBooksByAuthor(String author) {
         for (Book book: books){
-            if (author.equals(book.author)){
+            if (author.equals(book.getAuthor())){
                 System.out.println(book.getTitle());
             }
         }
@@ -49,7 +51,7 @@ public class Library {
         ArrayList<Book> booksByTitle = new ArrayList<>();
         for (Book book: this.books){
             for (String title: bookTitles){
-                if (title.equals(book.title)){
+                if (title.equals(book.getTitle())){
                     booksByTitle.add(book);
                 }
             }
@@ -60,14 +62,14 @@ public class Library {
     public double getAveragePageNumber(ArrayList<Book> books){
         double sum = 0;
         for (Book book: books){
-            sum += book.nrPages;
+            sum += book.getNrPages();
         }
         return sum/books.size();
     }
 
-    public void filterBooksByPrice(ArrayList<Book> books, double maxPrice){
+    public void filterBooksByPrice(double maxPrice){
         for (Book book: this.books){
-            if (book.price <= maxPrice){
+            if (book.getPrice() <= maxPrice){
                System.out.println(book.getTitle());
             }
         }
@@ -80,20 +82,60 @@ public class Library {
         Book maxBook = new Book();
         int maxPrice = 0;
         for (Book b: bookList){
-            if (b.price > maxPrice){
-                maxPrice = b.price;
+            if (b.getPrice() > maxPrice){
+                maxPrice = b.getPrice();
                 maxBook = b;
             }
         }
         return maxBook.getTitle();
     }
 
-    public void getBooksWithMinimumNumberOfPages(ArrayList<Book> books, int minimumPageNumber){
+    public void getBooksWithMinimumNumberOfPages(int minimumPageNumber){
         for (Book book: books){
-            if (book.nrPages >= minimumPageNumber){
+            if (book.getNrPages() >= minimumPageNumber){
                 System.out.println(book.getTitle());
             }
         }
+    }
+
+
+    public ArrayList<BookPair> getTwoBooksWithingTheBudget(int budget){
+        ArrayList<BookPair> booksWithinBudget = new ArrayList<>();
+        int maxNrPages = 0;
+        int maxPrice = 0;
+        for (Book book: books){
+            for (Book b: books){
+                if (book.getTitle().equals(b.getTitle())){
+                    continue;
+                }
+                else{ //cautam cel mai bun pret
+                    int bookPriceSum = sum(book.getPrice(), b.getPrice());
+                    int nrPages = sum(book.getNrPages(), b.getNrPages());
+                    if (bookPriceSum <= budget){
+                        if (maxPrice < bookPriceSum){
+                            maxPrice = sum(book.getPrice(),b.getPrice());
+                            BookPair bookPair = new BookPair(book, b);
+                            if (!booksWithinBudget.isEmpty()){
+                                booksWithinBudget.removeLast();
+                            }
+                            booksWithinBudget.add(bookPair);
+                        } else if (maxPrice == bookPriceSum) {
+                            if (maxNrPages <= nrPages){
+                                maxNrPages = nrPages;
+                                booksWithinBudget.removeLast();
+                                booksWithinBudget.add(new BookPair(book,b));
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+        return booksWithinBudget;
+
     }
 
 }

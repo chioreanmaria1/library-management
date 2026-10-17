@@ -1,8 +1,8 @@
 public class Book {
-    String title;
-    String author;
-    Integer price;
-    Integer nrPages;
+    private String title;
+    private String author;
+    private Integer price;
+    private Integer nrPages;
 
     Book(String title, String author, Integer price, Integer nrPages){
         this.title = title;
@@ -26,6 +26,22 @@ public class Book {
 
     public Integer getNrPages() {
         return nrPages;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public void setNrPages(Integer nrPages) {
+        this.nrPages = nrPages;
     }
 
     @Override
